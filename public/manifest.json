@@ -1,0 +1,18 @@
+{
+  "name": "古诗研习录 · 诗境",
+  "short_name": "诗境",
+  "description": "按 Level 循序渐进学习 75 首小学必背古诗",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F7F3E9",
+  "theme_color": "#F7F3E9",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./panda.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

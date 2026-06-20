@@ -1,0 +1,23 @@
+{
+  "name": "shijing",
+  "version": "1.0.0",
+  "description": "按 Level 循序渐进学习 75 首小学必背古诗",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "idb": "^8.0.3",
+    "petite-vue": "^0.4.1",
+    "postcss": "^8.5.15",
+    "puppeteer": "^25.1.0",
+    "tailwindcss": "^3.4.19",
+    "vite": "^8.0.16"
+  }
+}
