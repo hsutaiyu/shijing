@@ -216,6 +216,22 @@ body {
 
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
+.accordion-arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--ink-light);
+}
+
+.accordion-arrow.open {
+  transform: rotate(-135deg);
+}
+
 .recite-btn {
   opacity: 0;
   transition: opacity 0.2s ease;
