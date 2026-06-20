@@ -6,8 +6,8 @@ export function Accordion({ title, content, open = true } = {}) {
           <h3 class="text-base font-bold text-ink font-wenkai">{{ title }}</h3>
           <span class="accordion-arrow" :class="{ open: open }"></span>
         </button>
-        <div class="px-4 pb-4 transition-all duration-300 overflow-hidden" :style="{ maxHeight: open ? '1000px' : '0', opacity: open ? 1 : 0 }">
-          <div v-html="content"></div>
+        <div class="accordion-content" :class="{ open: open }">
+          <div class="accordion-inner" v-html="content"></div>
         </div>
       </div>
     `,
