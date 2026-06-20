@@ -13,6 +13,7 @@ export const store = reactive({
   currentPoemId: null,
   reviewMode: 'sequence',
   reviewIndex: 0,
+  theme: 'light',
   initialized: false,
 
   async init() {
@@ -29,7 +30,19 @@ export const store = reactive({
     const weakObj = {};
     weakSet.forEach(id => weakObj[id] = true);
     this.weakList = weakObj;
+    this.theme = localStorage.getItem('shijing-theme') || 'light';
+    this.applyTheme();
     this.initialized = true;
+  },
+
+  applyTheme() {
+    document.documentElement.dataset.theme = this.theme;
+    localStorage.setItem('shijing-theme', this.theme);
+  },
+
+  toggleTheme() {
+    this.theme = this.theme === 'light' ? 'dark' : 'light';
+    this.applyTheme();
   },
 
   updateStreak(stats) {

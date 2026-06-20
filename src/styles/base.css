@@ -5,18 +5,61 @@
 :root {
   --paper: #F7F3E9;
   --paper-dark: #EDE8DA;
-  --ink: #2C2C2C;
-  --ink-light: #5A5A5A;
+  --ink: #1A1A1A;
+  --ink-light: #4A4A4A;
+  --ink-muted: #6B6B6B;
   --cinnabar: #D44A4A;
   --cinnabar-light: #F5E6E6;
   --bamboo: #6B9E75;
   --bamboo-light: #E8F5E9;
   --gold: #C9A86C;
   --gold-light: #F5F0E6;
+  --plum: #F3E8F5;
+  --plum-ink: #8E6B8C;
+  --border: rgba(0,0,0,0.08);
+  --hover-bg: rgba(0,0,0,0.04);
+  --active-bg: rgba(0,0,0,0.06);
+  --shadow-card: 0 8px 32px rgba(44,44,44,0.10);
+  --shadow-float: 0 12px 40px rgba(44,44,44,0.14);
+  --scroll-bar: #D4C4A8;
+  --scroll-end: #B8A684;
+  --nav-bg: rgba(247,243,233,0.95);
+}
+
+[data-theme="dark"] {
+  --paper: #121212;
+  --paper-dark: #1E1E1E;
+  --ink: #F2F2F2;
+  --ink-light: #A8A8A8;
+  --ink-muted: #787878;
+  --cinnabar: #E85D5D;
+  --cinnabar-light: #3A2525;
+  --bamboo: #7BB085;
+  --bamboo-light: #1F2E22;
+  --gold: #D4B47A;
+  --gold-light: #2F2920;
+  --plum: #2E232E;
+  --plum-ink: #B894B6;
+  --border: rgba(255,255,255,0.08);
+  --hover-bg: rgba(255,255,255,0.05);
+  --active-bg: rgba(255,255,255,0.08);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.35);
+  --shadow-float: 0 12px 40px rgba(0,0,0,0.45);
+  --scroll-bar: #4A4540;
+  --scroll-end: #5A544E;
+  --nav-bg: rgba(18,18,18,0.95);
 }
 
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
@@ -31,8 +74,15 @@ body {
   background-color: var(--paper);
   background-image:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse at 20% 30%, rgba(212,74,74,0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(107,158,117,0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 30%, rgba(212,74,74,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(107,158,117,0.04) 0%, transparent 50%);
+}
+
+[data-theme="dark"] .paper-texture {
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 20% 30%, rgba(212,74,74,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(107,158,117,0.05) 0%, transparent 50%);
 }
 
 .ink-blot {
@@ -43,6 +93,10 @@ body {
   transform: scale(0);
   animation: inkSpread 1.2s ease-out forwards;
   z-index: 0;
+}
+
+[data-theme="dark"] .ink-blot {
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
 }
 
 @keyframes inkSpread {
@@ -71,9 +125,15 @@ body {
 .scroll-top, .scroll-bottom {
   position: relative;
   height: 12px;
-  background: linear-gradient(to bottom, #D4C4A8, #C9B896);
+  background: linear-gradient(to bottom, var(--scroll-bar), #C9B896);
   border-radius: 6px;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.08);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.12);
+}
+
+[data-theme="dark"] .scroll-top,
+[data-theme="dark"] .scroll-bottom {
+  background: linear-gradient(to bottom, var(--scroll-bar), #3A3530);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .scroll-top::before, .scroll-top::after,
@@ -82,7 +142,7 @@ body {
   position: absolute;
   width: 16px;
   height: 16px;
-  background: #B8A684;
+  background: var(--scroll-end);
   border-radius: 50%;
   top: -2px;
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
@@ -154,6 +214,10 @@ body {
   transition: background 0.2s ease;
 }
 
+[data-theme="dark"] .recite-highlight {
+  background: linear-gradient(120deg, transparent 0%, rgba(201,168,108,0.18) 15%, rgba(201,168,108,0.18) 85%, transparent 100%);
+}
+
 .btn-ripple {
   position: relative;
   overflow: hidden;
@@ -179,7 +243,7 @@ body {
 
 .progress-bar {
   height: 8px;
-  background: rgba(0,0,0,0.06);
+  background: var(--active-bg);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -205,9 +269,9 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(247,243,233,0.95);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0,0,0,0.06);
+  border-top: 1px solid var(--border);
   z-index: 100;
 }
 

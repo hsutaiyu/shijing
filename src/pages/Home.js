@@ -11,12 +11,18 @@ function HomePage() {
   return {
     $template: `
       <div class="page pb-8">
-        <header class="flex items-center gap-4 mb-8">
-          <div v-scope="PandaLogo({ size: 64 })"></div>
-          <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-ink font-wenkai">古诗研习录</h1>
-            <p class="text-sm text-ink-light">每天一首，循序渐进</p>
+        <header class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-4">
+            <div v-scope="PandaLogo({ size: 64 })"></div>
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-bold text-ink font-wenkai">古诗研习录</h1>
+              <p class="text-sm text-ink-light">每天一首，循序渐进</p>
+            </div>
           </div>
+          <button @click="store.toggleTheme" class="p-2.5 rounded-xl bg-paper-dark text-ink-light hover:text-cinnabar transition-colors border border-black/[0.04]" aria-label="切换主题" title="切换主题">
+            <svg v-if="store.theme === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <svg v-else class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          </button>
         </header>
 
         <section class="bg-paper-dark rounded-[20px] shadow-card p-6 mb-6 border border-black/[0.04]">

@@ -56,6 +56,16 @@ function PoemDetail() {
     speak(`${poem.title}，${poem.dynasty} ${poem.author}。${poem.content.join('')}`);
   }
 
+  async function copyPoem() {
+    const text = `${poem.title}\n${poem.dynasty} · ${poem.author}\n\n${poem.content.join('\n')}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('诗词已复制到剪贴板');
+    } catch {
+      prompt('请复制以下内容：', text);
+    }
+  }
+
   return {
     $template: `
       <div class="page pb-24">
@@ -66,9 +76,14 @@ function PoemDetail() {
           <div class="text-center">
             <p class="text-xs text-ink-light">Level {{ poem.level }} · {{ level.name }}</p>
           </div>
-          <button @click="speakPoem" class="p-2 rounded-xl hover:bg-black/5 transition-colors" title="朗读全诗">
-            <svg class="w-6 h-6 text-ink-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
-          </button>
+          <div class="flex items-center gap-1">
+            <button @click="copyPoem" class="p-2 rounded-xl hover:bg-black/5 transition-colors" title="复制全诗">
+              <svg class="w-5 h-5 text-ink-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </button>
+            <button @click="speakPoem" class="p-2 rounded-xl hover:bg-black/5 transition-colors" title="朗读全诗">
+              <svg class="w-6 h-6 text-ink-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+            </button>
+          </div>
         </header>
 
         <div class="bg-paper-dark rounded-[24px] shadow-card border border-black/[0.04] overflow-hidden mb-6">
@@ -160,7 +175,8 @@ function PoemDetail() {
     toggleProgress,
     highlightLine,
     speakPoem,
-    speakLine
+    speakLine,
+    copyPoem
   };
 }
 
